@@ -1,0 +1,73 @@
+{% extends 'partials/_base.html' %}
+
+{% load static %}
+
+{% block content  %}
+
+    <!-- Start Banner Area -->
+    <section class="banner-area organic-breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+                <div class="col-first">
+                    <h1>Booking Form</h1>
+                    <nav class="d-flex align-items-center">
+                        <a href="{% url 'index' %}">Home</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Banner Area -->
+    {% if messages %}
+		{% for message in messages %}
+			<div class="alert alert-{{message.tags}}">
+				{{message}}
+			</div>
+		{% endfor %}
+	{% endif %}
+
+    <!--================Checkout Area =================-->
+    <section class="checkout_area section_gap">
+        <div class="container">
+            <div class="billing_details">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h3>Hotel Booking</h3>
+                        <form class="row contact_form" action="#" method="POST" novalidate="novalidate">
+                            {% csrf_token %}
+                            <div class="col-md-6 form-group p_star">
+                                {{form.first_name}}
+                            </div>
+                            <div class="col-md-6 form-group p_star">
+                                {{form.last_name}}
+                            </div>
+                            <div class="col-md-6 form-group p_star">
+                                {{form.email}}
+                            </div>
+                            <div class="col-md-6 form-group p_star">
+                                {{form.phone}}
+                            </div>
+                            <div class="col-md-6 form-group p_star">
+                                <h6>Begin Date</h6>
+                                {{form.order_begin_date}}
+                            </div>
+                            <div class="col-md-6 form-group p_star">
+                                <h6>End Date</h6>
+                                {{form.order_end_date}}
+                            </div>
+                            <div class="col-md-6 form-group p_star">
+                                {{form.person_number}}
+                            </div>
+                            <div class="col-md-12 form-group">
+                                {{form.order_note}}
+                            </div>
+                            <button type="submit" class="primary-btn">Submit</button>
+                        </form>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================End Checkout Area =================-->
+{% endblock %}

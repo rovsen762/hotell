@@ -1,0 +1,79 @@
+{% extends 'partials/_base.html' %}
+
+{% load static %}
+
+{% block content  %}
+	<!-- Start Banner Area -->
+	<section class="banner-area organic-breadcrumb">
+		<div class="container">
+			<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+				<div class="col-first">
+					<h1>Home</h1>
+					<nav class="d-flex align-items-center">
+						<a href="{% url 'index' %}">Home<span></span></a>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End Banner Area -->
+	<!-- start features Area -->
+	<section class="features-area section_gap">
+		<div class="container">
+			<div class="row features-inner">
+				<!-- single features -->
+				<div class="col-lg-3 col-md-6 col-sm-6">
+				</div>
+				<!-- single features -->
+				<div class="col-lg-3 col-md-6 col-sm-6">
+				</div>
+				<!-- single features -->
+				<div class="col-lg-3 col-md-6 col-sm-6">
+				</div>
+				<!-- single features -->
+				<div class="col-lg-3 col-md-6 col-sm-6">
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- end features Area -->
+
+	
+	<!-- start product Area -->
+	<div class="container">
+		<div class="row">
+			<h2>Last Hotels</h2>
+			<div class="col-xl-12 col-lg-8 col-md-7">
+				<section class="lattest-product-area pb-40 category-list">
+					<div class="row">
+						<!-- single product -->
+						
+						{% for hotel in hotels %}
+						<div class="col-lg-4 col-md-6">
+							<div class="single-product">
+								<img class="img-fluid" src='{{ hotel.images.url }}' alt="" />
+								<div class="product-details">
+									<h6>{{hotel.name}}</h6>
+									<div class="price">
+										<h6>${{hotel.price}}</h6>
+									</div>
+									<div class="prd-bottom">
+										<a href="{% url 'hotel_detail' hotel.id %}" class="social-info">
+											<span class="lnr lnr-move"></span>
+											<p class="hover-text">view more</p>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+						<!-- single product -->
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+	<!-- end product Area -->
+
+
+{% endblock %}

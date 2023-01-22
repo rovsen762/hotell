@@ -1,0 +1,94 @@
+{% extends 'partials/_base.html' %}
+
+{% load static %}
+
+{% block content  %}
+
+	<!-- Start Banner Area -->
+	<section class="banner-area organic-breadcrumb">
+		<div class="container">
+			<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+				<div class="col-first">
+					<h1>Cart</h1>
+					<nav class="d-flex align-items-center">
+						<a href="{% url 'hotels' %}">Hotels</a>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End Banner Area -->
+
+    <!--================Cart Area =================-->
+
+    
+    <section class="cart_area">
+        <div class="container">
+            <div class="cart_inner">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Hotel</th>
+                                <th scope="col">Name Hotel</th>
+                                <th scope="col">Price(Standart)</th>
+                            </tr>
+                        </thead>
+                        {% for cart_item in cart_items %}
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="media">
+                                        <div class="d-flex">
+                                            <img src="{{ cart_item.hotel.images.url }}" alt="" width="100" height="90" />
+                                        </div>
+                                        <div class="media-body">
+                                            <p class="text-muted small">
+                                                {% if cart_item.variations.all %}
+                                                    {% for item in cart_item.variations.all %}
+                                                        {{ item.variation_category | capfirst }} : {{ item.variation_value | capfirst }} <br>
+                                                    {% endfor %}
+                                                {% endif %}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <h5>{{ cart_item.hotel.name }}</h5>
+                                </td>
+                                <td>
+                                    <h5>$ {{ cart_item.hotel.price }}</h5>
+                                </td>
+                                <td class = 'text-right'>
+                                    <a href="{% url 'remove_cart_item' cart_item.hotel.id cart_item.id %}" class="btn btn-danger btn-sm">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                            </tr>
+                        </tbody>
+                        {% endfor %}
+                        <tr class="bottom_button">
+                            <td>
+                                <a class="gray_btn" href="{% url 'hotels' %}">Continue to Booking</a>
+                            </td>
+                            <td>
+                    
+                            </td>
+                            <td>
+                    
+                            </td>
+                            <td>
+                                <div class="cupon_text d-flex align-items-center">
+                                    <a class="primary-btn" href="{% url 'place_order' %}">Place Book</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    
+{% endblock %}
+   
